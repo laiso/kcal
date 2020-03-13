@@ -8,9 +8,11 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@material-ui/core": "latest",
+    "firebase": "latest",
     "isomorphic-unfetch": "latest",
     "next": "latest",
-    "next-absolute-url": "^1.2.2",
+    "next-absolute-url": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
@@ -20,5 +22,5 @@
     "@types/react-dom": "latest",
     "typescript": "latest"
   },
-  "license": "GPLv3"
+  "license": "GPL-3.0"
 }
