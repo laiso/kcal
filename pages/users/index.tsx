@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
+import absoluteUrl from 'next-absolute-url'
 
 import Layout from '../../components/Layout'
 import List from '../../components/List'
@@ -27,12 +28,11 @@ const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
   </Layout>
 )
 
-WithInitialProps.getInitialProps = async ({ pathname }) => {
-  // Example for including initial props in a Next.js function component page.
-  // Don't forget to include the respective types for any props passed into
-  // the component.
+WithInitialProps.getInitialProps = async ({ req, pathname }) => {
+  const { protocol, host } = absoluteUrl(req)
+  const apiURL = `${protocol}//${host}/api/users`
   const items: User[] = await sampleFetchWrapper(
-    '/api/users'
+    apiURL
   )
 
   return { items, pathname }

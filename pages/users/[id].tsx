@@ -5,6 +5,7 @@ import { User } from '../../interfaces'
 import Layout from '../../components/Layout'
 import ListDetail from '../../components/ListDetail'
 import { sampleFetchWrapper } from '../../utils/sample-api'
+import absoluteUrl from "next-absolute-url";
 
 type Props = {
   item?: User
@@ -12,11 +13,13 @@ type Props = {
 }
 
 class InitialPropsDetail extends React.Component<Props> {
-  static getInitialProps = async ({ query }: NextPageContext) => {
+  static getInitialProps = async ({ req, query }: NextPageContext) => {
     try {
       const { id } = query
+      const { protocol, host } = absoluteUrl(req)
+      const apiURL = `${protocol}//${host}/api/users/${Array.isArray(id) ? id[0] : id}`
       const item = await sampleFetchWrapper(
-        `/api/users/${Array.isArray(id) ? id[0] : id}`
+        apiURL
       )
       return { item }
     } catch (err) {
