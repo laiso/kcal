@@ -32,7 +32,7 @@ WithInitialProps.getInitialProps = async ({ pathname }) => {
   // Don't forget to include the respective types for any props passed into
   // the component.
   const items: User[] = await sampleFetchWrapper(
-    'http://localhost:3000/api/users'
+    '/api/users'
   )
 
   return { items, pathname }
